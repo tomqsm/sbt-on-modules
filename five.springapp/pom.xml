@@ -11,15 +11,15 @@
 
     <artifactId>five.springapp</artifactId>
     <packaging>jar</packaging>
-   <dependencies>
+    <dependencies>
 
-       <dependency>
-           <groupId>biz.lwb.twelve</groupId>
-           <artifactId>five.service</artifactId>
-           <version>1.0-SNAPSHOT</version>
-       </dependency>
+        <dependency>
+            <groupId>biz.lwb.twelve</groupId>
+            <artifactId>five.service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
-   </dependencies>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -28,16 +28,93 @@
             </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>3.1.0</version>
+                <configuration>
+                    <outputDirectory>
+                        ${project.build.directory}/modules
+                    </outputDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
+                        <phase>package</phase>
                         <goals>
-                            <goal>test-jar</goal>
+                            <goal>copy-dependencies</goal>
                         </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/modules</outputDirectory>
+                            <includeScope>runtime</includeScope>
+                            <excludeArtifactIds>spring-boot-devtools,jaxb-api,jaxb-core,jaxb-runtime
+                            </excludeArtifactIds>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--            this updates jar by adding main class and you don't need to add it in command-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>module-main-class</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>jar</executable>
+                            <arguments>
+                                <argument>--update</argument>
+                                <argument>--file=${project.build.directory}/modules/${project.build.finalName}.jar
+                                </argument>
+                                <argument>--main-class=${mainClass}</argument>
+                                <argument>--module-version=${project.version}</argument>
+                            </arguments>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>dockerfile-maven-plugin</artifactId>
+                        <version>1.4.12</version>
+                        <configuration>
+                            <contextDirectory>.</contextDirectory>
+                            <repository>${project.artifactId}</repository>
+                            <tag>latest</tag>
+                            <dockerConfigFile></dockerConfigFile>
+                            <buildArgs>
+                                <JVM_OPTS>-Xmx512m</JVM_OPTS>
+                            </buildArgs>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>build-image</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 
 </project>
