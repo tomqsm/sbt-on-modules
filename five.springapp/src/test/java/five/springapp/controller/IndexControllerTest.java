@@ -1,10 +1,11 @@
 package five.springapp.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class IndexControllerTest {
+import org.junit.Test;
 
-    @org.junit.jupiter.api.Test
-    void getServiceInfo() {
+public class IndexControllerTest {
+
+    @Test
+    public void getServiceInfo() {
     }
 }
