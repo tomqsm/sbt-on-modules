@@ -43,7 +43,7 @@ public class IndexController {
 
     @GetMapping("service.spring.injection")
     public List<FiveServiceSpringData> getServiceSpringInfoInjection() {
-        return List.of(repository.findById(3));
+        return repository.findAll();
 
     }
 

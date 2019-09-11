@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Profile("inmemory")
 public class InmemDaoImpl implements FiveServiceSpring {
@@ -23,6 +25,11 @@ public class InmemDaoImpl implements FiveServiceSpring {
     @Override
     public FiveServiceSpringData findById(Integer id) {
         return getMapper().findById(id);
+    }
+
+    @Override
+    public List<FiveServiceSpringData> findAll() {
+        return getMapper().findAll();
     }
 
 }
