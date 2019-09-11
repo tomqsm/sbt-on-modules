@@ -8,7 +8,6 @@ open module five.service.spring {
     requires spring.boot.starter;
     requires spring.web;
     requires spring.beans;
-    requires lombok;
     requires org.mybatis;
     requires org.mybatis.spring;
     requires java.sql;

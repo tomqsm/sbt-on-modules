@@ -1,7 +1,6 @@
 package five.service.spring.api;
 
 import five.service.spring.db.inmemory.InmemDaoImpl;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = SpringConfig.class)

@@ -1,7 +1,6 @@
 package five.service.spring.db.inmemory;
 
 import five.service.spring.api.FiveServiceSpring;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.JdbcType;
@@ -16,7 +15,6 @@ import javax.sql.DataSource;
 
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @Configuration
-@Slf4j
 public class InmemMyBatisConfig {
 
     @Bean

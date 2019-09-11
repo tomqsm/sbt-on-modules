@@ -21,6 +21,6 @@ ADD target/modules /opt/app/modules
 ARG JVM_OPTS
 ENV JVM_OPTS=${JVM_OPTS}
 
-CMD java ${JVM_OPTS} --upgrade-module-path /opt/app/modules --module five.springapp
-#docker build -t min -f .\Dockerfile .
+CMD java -Dspring.profiles.active=inmemory,default ${JVM_OPTS} --upgrade-module-path /opt/app/modules --module five.springapp
+#docker build --build-arg JVM_OPTS=-Xmx512m -t min -f .\Dockerfile .
 #docker run -it -e "JVM_OPTS=-Xmx512m" --rm --name min -p 8080:8080 min

@@ -2,7 +2,6 @@ import five.service.api.FiveService;
 import five.service.spring.api.FiveServiceSpring;
 
 open module five.springapp {
-    requires lombok;
     requires five.service;
     requires five.service.spring;
     requires spring.boot.autoconfigure;
