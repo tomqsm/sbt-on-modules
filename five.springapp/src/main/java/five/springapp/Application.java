@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @Import(SpringConfig.class)
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class})
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) {
         new SpringApplicationBuilder(Application.class).run(args);

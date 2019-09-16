@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+//@RibbonClient(name = "hello-service", configuration = HelloServiceConfiguration.class)
 public class IndexController {
     public static final Logger LOG = LoggerFactory.getLogger(IndexController.class);
 
