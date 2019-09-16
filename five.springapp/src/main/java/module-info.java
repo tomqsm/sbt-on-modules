@@ -18,7 +18,7 @@ open module five.springapp {
     requires guava;
     requires spring.cloud.commons;
     requires spring.cloud.zookeeper.core;
-    requires spring.cloud.zookeeper.discovery;
+//    requires spring.cloud.zookeeper.discovery;
     uses FiveService;
     uses FiveServiceSpring;
 }

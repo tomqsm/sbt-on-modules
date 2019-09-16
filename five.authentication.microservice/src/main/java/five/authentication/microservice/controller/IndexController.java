@@ -1,5 +1,6 @@
 package five.authentication.microservice.controller;
 
+import five.authentication.microservice.client.SpringappClient;
 import five.authentication.microservice.model.IndexResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +16,20 @@ public class IndexController {
     @Autowired
     private ControllerProperties controllerProperties;
 
+    @Autowired
+    private SpringappClient springappClient;
+
     @GetMapping("auth")
     public IndexResult getdiscovery() {
         IndexResult indexResult = new IndexResult();
         indexResult.setName(controllerProperties.getName());
         indexResult.setValue("indexvalue");
         return indexResult;
+    }
 
+    @GetMapping("client")
+    public String getClient(){
+        return springappClient.helloWorld();
     }
 
 }

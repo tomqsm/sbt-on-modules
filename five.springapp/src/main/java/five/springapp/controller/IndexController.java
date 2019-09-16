@@ -9,16 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.zookeeper.serviceregistry.ZookeeperServiceRegistry;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.cloud.zookeeper.serviceregistry.ServiceInstanceRegistration;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.ServiceLoader;
 import java.util.stream.Collectors;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 
 @RestController
 public class IndexController {

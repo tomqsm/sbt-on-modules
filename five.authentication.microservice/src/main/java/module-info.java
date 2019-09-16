@@ -12,5 +12,9 @@ open module five.authentication.microservice {
     requires guava;
     requires spring.cloud.commons;
     requires spring.cloud.zookeeper.core;
-    requires spring.cloud.zookeeper.discovery;
+//    requires spring.cloud.zookeeper.discovery;
+//    requires spring.cloud.starter.feign;
+    requires spring.cloud.openfeign.core;
+    requires spring.cloud.netflix.ribbon;
+//    requires ribbon;
 }
